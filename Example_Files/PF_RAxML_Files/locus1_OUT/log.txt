@@ -1,0 +1,49 @@
+INFO     | 2016-11-22 11:33:42,263 | config     | Loading configuration at './partition_finder.cfg'
+INFO     | 2016-11-22 11:33:42,267 | config     | Setting 'alignment' to 'locus1.phylip-relaxed'
+INFO     | 2016-11-22 11:33:42,267 | config     | Setting 'branchlengths' to 'linked'
+INFO     | 2016-11-22 11:33:42,268 | parser     | You set 'models' to: all
+INFO     | 2016-11-22 11:33:42,278 | model_load | This analysis will use the following 3 models of molecular evolution
+INFO     | 2016-11-22 11:33:42,278 | model_load | GTR, GTR+G, GTR+I+G
+INFO     | 2016-11-22 11:33:42,278 | config     | Setting 'model_selection' to 'bic'
+INFO     | 2016-11-22 11:33:42,279 | config     | Setting 'search' to 'kmeans'
+INFO     | 2016-11-22 11:33:42,279 | config     | ------------------------ BEGINNING NEW RUN -------------------------------
+INFO     | 2016-11-22 11:33:42,279 | config     | Looking for alignment file './locus1.phylip-relaxed'...
+INFO     | 2016-11-22 11:33:42,283 | threadpool | Using 8 cpus
+INFO     | 2016-11-22 11:33:42,283 | analysis   | Beginning Analysis
+INFO     | 2016-11-22 11:33:42,306 | alignment  | Reading alignment file './locus1.phylip-relaxed'
+INFO     | 2016-11-22 11:33:42,316 | analysis   | Starting tree will be estimated from the data.
+INFO     | 2016-11-22 11:33:42,317 | raxml      | Estimating Maximum Likelihood tree with RAxML fast experimental tree search for ./analysis/start_tree/filtered_source.phy
+INFO     | 2016-11-22 11:33:42,321 | raxml      | Using a separate GTR+G model for each data block
+INFO     | 2016-11-22 11:33:42,556 | raxml      | Estimating GTR+G branch lengths on ML tree using all partitions
+INFO     | 2016-11-22 11:33:42,740 | raxml      | ML topology estimation finished
+INFO     | 2016-11-22 11:33:42,743 | analysis_m | Performing k-means Analysis
+WARNING  | 2016-11-22 11:33:42,744 | analysis_m |    Warning as of April 2016: We have noticed that the kmeans algorithm does not perform well on some simulated datasets. We are working on investigating and addressing this but in the mean time we suggest being very cautious about using this algorithm. At the very least, you should try other approaches (e.g. partitioning by locus), and investigate your answers carefully (both the trees and the partitioning schemes). If you have any questions, please get in touch on the google group. Note that this warning does not apply to cases where you are using models that have an ascertainment bias for datasets that include only variable sites as is often the case with morphological analyses.
+INFO     | 2016-11-22 11:33:42,744 | analysis_m |    **Analysing starting scheme (scheme start_scheme)**
+INFO     | 2016-11-22 11:33:43,018 | analysis_m |    ***k-means algorithm step 1***
+INFO     | 2016-11-22 11:33:43,018 | analysis_m |       Splitting subsets using k-means
+INFO     | 2016-11-22 11:33:43,208 | analysis_m |          Subset 1: 658 sites not splittable
+INFO     | 2016-11-22 11:33:43,209 | analysis_m |       Calculating scores of all new subsets that can be analysed
+INFO     | 2016-11-22 11:33:43,209 | analysis_m |       Could not improve bic score. Kmeans algorithm finished.
+INFO     | 2016-11-22 11:33:43,209 | analysis_m |    Analysing final scheme
+INFO     | 2016-11-22 11:33:43,209 | analysis_m |    ** Kmeans algorithm finished after 1 steps **
+INFO     | 2016-11-22 11:33:43,209 | analysis_m |    Best scoring scheme has 1 subsets and a bic score of 2417.849
+INFO     | 2016-11-22 11:33:43,210 | model_util |    Information on best scheme is here: ./analysis/best_scheme.txt
+INFO     | 2016-11-22 11:33:43,215 | model_util |    
+INFO     | 2016-11-22 11:33:43,215 | model_util |    
+INFO     | 2016-11-22 11:33:43,215 | model_util |    *Citations for this analysis*
+INFO     | 2016-11-22 11:33:43,215 | model_util |    -----------------------------
+INFO     | 2016-11-22 11:33:43,215 | model_util |    
+INFO     | 2016-11-22 11:33:43,216 | model_util |    If you use this analysis in your published work, please cite the following papers on which your analysis relied.
+INFO     | 2016-11-22 11:33:43,216 | model_util |    
+INFO     | 2016-11-22 11:33:43,216 | model_util |    For the version of PartitionFinder you used, please cite:
+INFO     | 2016-11-22 11:33:43,216 | model_util |    Lanfear, R., Frandsen, P. B., Wright, A. M., Senfeld, T., Calcott, B. (2016) PartitionFinder 2: new methods for selecting partitioned models of evolution formolecular and morphological phylogenetic analyses. Molecular biology and evolution. DOI: dx.doi.org/10.1093/molbev/msw260
+INFO     | 2016-11-22 11:33:43,216 | model_util |    
+INFO     | 2016-11-22 11:33:43,216 | model_util |    For the kmeans algorithm you used, please cite:
+INFO     | 2016-11-22 11:33:43,216 | model_util |    Frandsen, P. B., Calcott, B., Mayer, C., & Lanfear, R. (2015). Automatic selection of partitioning schemes for phylogenetic analyses using iterative k-means clustering of site rates. BMC Evolutionary Biology, 15(1), 13.
+INFO     | 2016-11-22 11:33:43,216 | model_util |    
+INFO     | 2016-11-22 11:33:43,217 | model_util |    Your analysis also used RAxML, so please cite:
+INFO     | 2016-11-22 11:33:43,217 | model_util |    Stamatakis, A. (2014). RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies. Bioinformatics, 30(9), 1312-1313.
+INFO     | 2016-11-22 11:33:43,217 | model_util |    
+WARNING  | 2016-11-22 11:33:43,221 | analysis_m |    Warning as of April 2016: We have noticed that the kmeans algorithm does not perform well on some simulated datasets. We are working on investigating and addressing this but in the mean time we suggest being very cautious about using this algorithm. At the very least, you should try other approaches (e.g. partitioning by locus), and investigate your answers carefully (both the trees and the partitioning schemes). If you have any questions, please get in touch on the google group. Note that this warning does not apply to cases where you are using models that have an ascertainment bias for datasets that include only variable sites as is often the case with morphological analyses.
+INFO     | 2016-11-22 11:33:43,233 | main       | Total processing time: 0:00:01 (h:m:s)
+INFO     | 2016-11-22 11:33:43,234 | main       | Processing complete.

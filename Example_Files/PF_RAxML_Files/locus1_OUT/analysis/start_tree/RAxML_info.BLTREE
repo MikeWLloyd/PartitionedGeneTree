@@ -1,0 +1,77 @@
+
+
+Using BFGS method to optimize GTR rate parameters, to disable this specify "--no-bfgs" 
+
+
+
+This is RAxML version 8.2.9 released by Alexandros Stamatakis on July 20 2016.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Sarah Lutteropp   (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+Charlie Taylor    (UF)
+
+
+Alignment has 28 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 11.40%
+
+RAxML Model Optimization up to an accuracy of 1.000000 log likelihood units
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by RAxML
+GAMMA model of rate heteorgeneity, ML estimate of alpha-parameter
+
+GAMMA Model parameters will be estimated up to an accuracy of 1.0000000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 28
+Name: Subset1
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+/Users/mlloyd/genetree_scripts/3_Partition_Finder/partitionfinder-2.0.0/programs/raxml_pthreads -f e -s ./analysis/start_tree/filtered_source.phy -t ./analysis/start_tree/RAxML_fastTree.fastTREE -m GTRGAMMA -O -n BLTREE -p 123456789 -q ./analysis/start_tree/partitions.txt -w /Users/mlloyd/genetree_scripts/2_PF_jobgen/PF_RAxML_Files/locus1_OUT/analysis/start_tree -e 1 -T 8 
+
+
+
+Model parameters (binary file format) written to: /Users/mlloyd/genetree_scripts/2_PF_jobgen/PF_RAxML_Files/locus1_OUT/analysis/start_tree/RAxML_binaryModelParameters.BLTREE
+
+
+Overall Time for Tree Evaluation 0.075472
+Final GAMMA  likelihood: -1159.295234
+
+Number of free parameters for AIC-TEST(BR-LEN): 16
+Number of free parameters for AIC-TEST(NO-BR-LEN): 9
+
+
+Model Parameters of Partition 0, Name: Subset1, Type of Data: DNA
+alpha: 0.599964
+Tree-Length: 0.417964
+rate A <-> C: 59.765541
+rate A <-> G: 106.479105
+rate A <-> T: 31.703992
+rate C <-> G: 16.736616
+rate C <-> T: 112.693782
+rate G <-> T: 1.000000
+
+freq pi(A): 0.290223
+freq pi(C): 0.217496
+freq pi(G): 0.113208
+freq pi(T): 0.379074
+
+Final tree written to:                 /Users/mlloyd/genetree_scripts/2_PF_jobgen/PF_RAxML_Files/locus1_OUT/analysis/start_tree/RAxML_result.BLTREE
+Execution Log File written to:         /Users/mlloyd/genetree_scripts/2_PF_jobgen/PF_RAxML_Files/locus1_OUT/analysis/start_tree/RAxML_log.BLTREE
