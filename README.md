@@ -3,13 +3,8 @@
 This series of scripts assumes you are starting with Phylip formated alignments for individual genes or loci. Each gene or locus is contained within an individual file, and all files are contained in a single directory.  
 
 This can be achieved a number of ways; however, one way is from the [Phyluce](https://github.com/faircloth-lab/phyluce) pipeline. Here I assume you would pick up after the 'phyluce_align_get_only_loci_with_min_taxa' step. If this is the case, you will need to:  
-1.  Remove the locus names from the alignments with:  
-
-    phyluce_align_remove_locus_name_from_nexus_lines  
-
-2. Convert alignments from nexus to phylip with:   
-
-    phyluce_align_convert_one_align_to_another  
+1. Remove the locus names from the alignments with: phyluce_align_remove_locus_name_from_nexus_lines  
+2. Convert alignments from nexus to phylip with: phyluce_align_convert_one_align_to_another  
     
 Once you have a directory containing individual genes/loci (see example files), you can pick up with either inter_to_sequential.pl or PF_jobgen. 
 
