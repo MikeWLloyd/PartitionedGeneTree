@@ -35,6 +35,6 @@ do
 
 locus=`basename "$ARQ"`;
 
-qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd -m aes pf_job.job $ARQ
+qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd -m aes pf_job_Hydra3.job $ARQ
 
 done
