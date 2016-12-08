@@ -63,7 +63,7 @@ while (my $file = readdir(DIR)) {
     print CONF '[data_blocks]'."\n";
     print CONF "All = 1-$alignment_size;\n";
     print CONF '[schemes]'."\n";
-    print CONF "search = kmeans;\n";
+    print CONF "search = rcluster;\n";
 
     close CONF;
 
