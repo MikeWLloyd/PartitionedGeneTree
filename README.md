@@ -112,7 +112,3 @@ I have provided files from start to finish to provide examples of how the output
 	This is the workhorse directory that is intially generated in the pf_jobgen step and is used repeatedly for the rest of the script steps. This directory contains all the files for the remaining steps.
 * ./Astral_Infiles  
 	This is the final directory output by best_tree_concat containing the files for use in ASTRAL, or other programs. 
-	
-### ToDo: 
-
-* RAxML version for non-partitioned analysis. 
