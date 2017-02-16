@@ -19,12 +19,12 @@ if ($num_args != 2) {
     exit;
 }
 
+unless(make_path("$ARGV[1]")) {
+	die "FAILED TO RUN!\nUnable to create directory $ARGV[1] because it already exits, or can't be created.$!\n";
+}
+
 $abs_path_in = abs_path( $ARGV[0] );
 $abs_path_out = abs_path ( $ARGV[1] ); 
-
-unless(make_path("$abs_path_out")) {
-	die "FAILED TO RUN!\nUnable to create directory $ARGV[1] because it already exits.$!\n";
-}
 
 opendir(DIR, $abs_path_in) or die $!;
 

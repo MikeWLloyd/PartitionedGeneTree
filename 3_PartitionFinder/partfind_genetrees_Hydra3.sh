@@ -23,11 +23,7 @@ fi
 
 workdir=$(myreadlink  $1)
 
-if [ -d "./logs" ]; then
-  # Control will enter here if $DIRECTORY exists.
-else 
-	mkdir ./logs
-fi
+mkdir -p ./logs
 
 for ARQ in $workdir/*_OUT/
 

@@ -9,6 +9,7 @@
 use File::Basename;
 my $name = basename($0);
 use Cwd 'abs_path';
+use File::Path qw(make_path);
 
 $num_args = $#ARGV + 1;
 if ($num_args != 2) {
@@ -16,8 +17,8 @@ if ($num_args != 2) {
     exit;
 }
 
-unless(mkdir "$ARGV[1]") {
-	die "FAILED TO RUN!\nUnable to create directory $ARGV[1] because it already exits.\n";
+unless(make_path("$ARGV[1]")) {
+	die "FAILED TO RUN!\nUnable to create directory $ARGV[1] because it already exits, or can't be created.\n";
 }
 
 my $dir = abs_path( $ARGV[0] );

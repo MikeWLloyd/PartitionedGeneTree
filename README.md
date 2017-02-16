@@ -21,12 +21,16 @@ This script will preparing the directory structure and input configuration files
 The required input are phylip alignments in sequential format.  
 If interleaved Phylip files exist, use the inter_to_sequential.pl script to convert them.
 
-Per a [note](https://github.com/brettc/partitionfinder/commit/19d7fe41d2e469c131a5b0cc30184a069867b7f2) from the developer,`kmeans`has been removed as a search method. The search method is now set to:`search = rcluster`
+Per a [note](https://github.com/brettc/partitionfinder/commit/19d7fe41d2e469c131a5b0cc30184a069867b7f2) from the developer,`kmeans`has been removed as a search method. The search method is now set to:`search = rcluster`. 
 
 ### Example call: 
     perl pf_jobgen.pl [directory/to/phylip-relaxed-sequential] [output_directory]
     
+### If you wish to proceed with partitionfinder, go to step 3. Else, proceed to step 5b.     
+
 ## 3. partfind\_genetrees\_local.sh
+
+This may not be worth running currently as a single data-block is set for each 'locus.' Until a new method is found to replace `kmeans`, not sure this is worth running. 
 
 This script will sequentially run Version-2.1.1 of [PartitionFinder](https://github.com/brettc/partitionfinder/releases/tag/v2.1.1)  
 Python 2.7 is required for PartitionFinder.  
@@ -46,16 +50,26 @@ This script takes the resulting output from PartitionFinder for each locus, and 
 ### Example call: 
     perl best_scheme_finder.pl [./path/to/pf_jobgen_output]
     
-## 5. raxml\_genetrees\_part\_local.sh
+## 5a. raxml\_genetrees\_part\_local.sh
 
-This script sequentially runs partitioned RAxML on each locus. This assume the use of raxmlHPC installed someplace where your path statement can find it (e.g., /usr/local/bin/).  
+Assumes you have run steps 3 and 4. This script sequentially runs partitioned RAxML on each locus. This assume the use of raxmlHPC installed someplace where your path statement can find it (e.g., /usr/local/bin/).  
 If a different version of raxml is required, modify the script to point at the version you require. You could also modify this to include multi-threaded version...
 
 Again, I have included version for cluster or grid computing systems (raxml\_genetrees\_part\_Hydra3.sh and raxml\_job\_part\_Hydra3.job). They can be modified to suit your needs. 
 
-
 ### Example call: 
     ./raxml_genetrees_part_local.sh [./path/to/pf_jobgen_output]
+
+## 5b. raxml\_genetrees\_nopart\local.sh
+
+Assumes you have proceeded here from step 2. This script sequentially runs RAxML on each locus. This assume the use of raxmlHPC installed someplace where your path statement can find it (e.g., /usr/local/bin/).  
+If a different version of raxml is required, modify the script to point at the version you require. You could also modify this to include multi-threaded version...
+
+Again, I have included version for cluster or grid computing systems (raxml\_genetrees\_nopart\_Hydra3.sh and raxml\_job\_nopart\_Hydra3.job). They can be modified to suit your needs. 
+
+### Example call: 
+    ./raxml_genetrees_nopart_local.sh [./path/to/pf_jobgen_output]
+
     
 ## 6. best\_tree\_concat.pl
 
