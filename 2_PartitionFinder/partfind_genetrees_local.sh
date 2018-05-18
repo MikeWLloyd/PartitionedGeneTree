@@ -24,9 +24,9 @@ function myreadlink() {
   )
 }
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 4 ]; then
     echo Script needs directory input.
-    echo Script usage: $me [./path/to/PartitionFinder.py] [./path/to/pf_jobgen_output] [#threads to use]
+    echo Script usage: $me [./path/to/PartitionFinder.py] [./path/to/pf_jobgen_output] [./path/to/SWSCEN.py] [#threads to use]
     exit 1
 fi
 
@@ -37,14 +37,20 @@ fi
 
 partfind=$(myreadlink $1)
 workdir=$(myreadlink  $2)
+swscen=$(myreadlink $3)
 
 for ARQ in $workdir/*_OUT/
 
 	do
 
-	locus=`basename "$ARQ"`;
+  hold_locus=`basename "$ARQ"`;
+  locus=$(echo $hold_locus| cut -d'_' -f 1)
 
-	eval python $partfind $ARQ --raxml --cmdline-extras -T $3
+  eval python $swscen $ARQ.nexus
+
+  rename $ARQ/$locus.nexus_entropy_partition_finder.cfg, $ARQ/partition_finder.cfg;
+
+	eval python $partfind $ARQ --raxml --cmdline-extras -T $4
 	# This will run on a local machine. 
 
 done

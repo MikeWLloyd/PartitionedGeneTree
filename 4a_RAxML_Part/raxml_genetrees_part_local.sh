@@ -22,12 +22,13 @@ fi
 
 workdir=$(myreadlink $1)
 
-for ARQ in $workdir/*_OUT/*.phylip-relaxed
+for ARQ in $workdir/*_OUT/*.phy
 
 	do
-	locus=`basename "$ARQ"`;
-	dir=`dirname "$ARQ"`;
-	output="$ARQ""_MS"
+  hold_locus=`basename "$ARQ"`;
+  locus=$(echo $hold_locus| cut -d'.' -f 1)
+  dir=`dirname "$ARQ"`;
+	output="$dir/$locus\_MS";
 
 	eval raxmlHPC -f a -p 12345 -x 12341 -m GTRGAMMA -q $dir/aln.part -N 200 -s $ARQ -n Multiplestarts -w $output
 

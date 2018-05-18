@@ -6,6 +6,9 @@
 # This script will sequentially run Version-2.0.0 of PartitionFinder (https://github.com/brettc/partitionfinder/releases/latest)
 # It should run on a grid system that accepts qsub commands. 
 
+
+### NEED TO INCLUDE CHECK IF INPUT DIR EXISTS. ALSO NEED TO UPDATE TO ASK FOR A PATH TO SWSCEN.py
+
 me=`basename "$0"`
 
 function myreadlink() {
@@ -15,13 +18,15 @@ function myreadlink() {
   )
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 3 ]; then
     echo Script needs directory input.
-    echo Script usage: $me [./path/to/pf_jobgen_output]
+    echo Script usage: $me [./path/to/pf_jobgen_output] [./path/to/job_file] [./path/to/SWSCEN.py]
     exit 1
 fi
 
 workdir=$(myreadlink  $1)
+jobfile=$(myreadlink  $2)
+swscen=$(myreadlink  $3)
 
 mkdir -p ./logs
 
@@ -29,8 +34,10 @@ for ARQ in $workdir/*_OUT/
 
 do
 
-locus=`basename "$ARQ"`;
+hold_locus=`basename "$ARQ"`;
 
-qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd -m aes pf_job_Hydra3.job $ARQ
+locus=$(echo $hold_locus| cut -d'_' -f 1)
+
+qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd $jobfile $ARQ $locus $swscen
 
 done
