@@ -87,7 +87,7 @@ The directory structure results from running the preceding script steps, but can
 * ./boots - directory of individual bootstrap trees.  
 * ./best - directory of individual best trees.
 
-## 7. ASTRAL
+## 6. ASTRAL
 
 Run ASTRAL per the manual (should you wish to). e.g.,:  
 
