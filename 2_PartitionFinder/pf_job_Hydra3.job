@@ -1,4 +1,6 @@
-python $3 $1/$2.nexus
+module load bioinformatics/partitionfinder/UCE_SWSC
+SWSCEN.py $1/$2.nexus
 mv $1/$2.nexus_entropy_partition_finder.cfg $1/partition_finder.cfg
+module unload bioinformatics/partitionfinder/UCE_SWSC
 module load bioinformatics/partitionfinder/2.0pr14
 PartitionFinder.py $1 --raxml --cmdline-extras -T 8 -p 1

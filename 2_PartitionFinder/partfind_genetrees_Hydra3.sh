@@ -18,15 +18,15 @@ function myreadlink() {
   )
 }
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 2 ]; then
     echo Script needs directory input.
-    echo Script usage: $me [./path/to/pf_jobgen_output] [./path/to/job_file] [./path/to/SWSCEN.py]
+    echo Script usage: $me [./path/to/pf_jobgen_output] [./path/to/job_file]
     exit 1
 fi
 
 workdir=$(myreadlink  $1)
 jobfile=$(myreadlink  $2)
-swscen=$(myreadlink  $3)
+
 
 mkdir -p ./logs
 
@@ -38,6 +38,6 @@ hold_locus=`basename "$ARQ"`;
 
 locus=$(echo $hold_locus| cut -d'_' -f 1)
 
-qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd $jobfile $ARQ $locus $swscen
+qsub -pe mpich 8 -q sThC.q -N pf_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd $jobfile $ARQ $locus
 
 done
