@@ -1,3 +1,0 @@
-export OMPI_MCA_plm_rsh_disable_qrsh=1
-module load bioinformatics/raxml/8.2-IB
-mpirun -np $NSLOTS raxmlHPC-MPI-SSE3-IB -f a -p 12345 -x 12341 -m GTRGAMMA -q $2/aln.part -N 200 -s $1 -n TestingNew -w $1_MS

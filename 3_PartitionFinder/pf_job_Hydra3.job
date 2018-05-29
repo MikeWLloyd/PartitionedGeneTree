@@ -1,2 +1,0 @@
-module load bioinformatics/partitionfinder/2.0pr14
-PartitionFinder.py $1 --raxml --cmdline-extras -T 8 -p 1
