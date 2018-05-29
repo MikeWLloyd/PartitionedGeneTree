@@ -1,50 +1,56 @@
-# Individual Gene Tree / Locus Analysis Using [SWSCEN](https://github.com/Tagliacollo/PFinderUCE-SWSC-EN), [PartitionFinder-2.1.1](https://github.com/brettc/partitionfinder/releases/latest), [RAxML](https://github.com/stamatak/standard-RAxML) and [ASTRAL](https://github.com/smirarab/ASTRAL)
+# Individual Gene Tree / Locus Analysis Using [PartitionFinder-2.1.1](https://github.com/brettc/partitionfinder/releases/latest), [RAxML](https://github.com/stamatak/standard-RAxML) and [ASTRAL](https://github.com/smirarab/ASTRAL)
 
 This series of scripts assumes you are starting with Phylip formated alignments for individual genes or loci. Each gene or locus is contained within an individual file, and all files are contained in a single directory.  
 
-This can be achieved a number of ways; however, one way is from the [Phyluce](https://github.com/faircloth-lab/phyluce) pipeline. Here I assume you would pick up after the `phyluce_align_get_only_loci_with_min_taxa` step. If this is the case, you will need to remove the locus names from the alignments with: `phyluce_align_remove_locus_name_from_nexus_lines`
+This can be achieved a number of ways; however, one way is from the [Phyluce](https://github.com/faircloth-lab/phyluce) pipeline. Here I assume you would pick up after the 'phyluce_align_get_only_loci_with_min_taxa' step. If this is the case, you will need to:  
+1. Remove the locus names from the alignments with: phyluce_align_remove_locus_name_from_nexus_lines  
+2. Convert alignments from nexus to phylip with: phyluce_align_convert_one_align_to_another  
     
-Once you have a directory containing individual nexus genes/locus files you pick up with PF_jobgen. 
+Once you have a directory containing individual genes/loci (see example files), you can pick up with either inter_to_sequential.pl or PF_jobgen. 
 
-**Note: that the 'local' versions of the scripts require additional testing. Please file an issue is the scripts are not working properly.**
+## 1. inter\_to\_sequential.pl
+
+This script converts interleaved Phylip alignments to the required sequential format. It will loop over the directory and convert the files one at a time. 
+
+### Example call: 
+    perl inter_to_sequential.pl [directory/to/phylip-relaxed-interleaved] [output/dir/]
     
-## 1. pf_jobgen.pl
+## 2. pf_jobgen.pl
 
-This script will prepare the directory structure and input configuration files for multiple loci for SWSCEN and PartitionFinder and the subsequently RAxML analysis.
+This script will preparing the directory structure and input configuration files for multiple loci for PartitionFinder and the subsequently RAxML analysis.  
+The required input are phylip alignments in sequential format.  
+If interleaved Phylip files exist, use the inter_to_sequential.pl script to convert them.
 
-The required input is a directory of nexus alignments.  
-
+Per a [note](https://github.com/brettc/partitionfinder/commit/19d7fe41d2e469c131a5b0cc30184a069867b7f2) from the developer,`kmeans`has been removed as a search method. The search method is now set to:`search = rcluster`. 
 
 ### Example call: 
     perl pf_jobgen.pl [directory/to/phylip-relaxed-sequential] [output_directory]
     
-### If you wish to proceed with SWSCEN and partitionfinder, go to step 3. Else, proceed to step 5b.     
+### If you wish to proceed with partitionfinder, go to step 3. Else, proceed to step 5b.     
 
-## 2. partfind\_genetrees\_local.sh
+## 3. partfind\_genetrees\_local.sh
 
+This may not be worth running currently as a single data-block is set for each 'locus.' Until a new method is found to replace `kmeans`, not sure this is worth running. 
 
-This script will sequentially run [SWSCEN](https://github.com/Tagliacollo/PFinderUCE-SWSC-EN) and then version-2.1.1 of [PartitionFinder](https://github.com/brettc/partitionfinder/releases/tag/v2.1.1)  
-Python 2.7 is required for PartitionFinder and SWSC. Additionally SWSC requires a number of python modules to be installed. (biopython, numpy, pathlib2, and tqdm). See the documentation of SWSCEN for installation instructions. 
-
-The installation of PartitionFinder-2.1.1 also requires a number of Python dependencies. 
-
-Ensure that all dependencies for both SWSCEN and Partitionfinder are installed, and that SWSCEN.py and PartionFinder.py run properly before running the bash script.  
+This script will sequentially run Version-2.1.1 of [PartitionFinder](https://github.com/brettc/partitionfinder/releases/tag/v2.1.1)  
+Python 2.7 is required for PartitionFinder.  
+The installation of PartitionFinder-2.1.1 also requires a number of Python dependencies. Ensure they are installed, and that PartionFinder.py runs properly before running the bash script.  
 
 A second version of the bash script (partfind_genetrees_Hydra3.sh and pf_job.job) is included for cluster or grid computing systems. It is currently configured for systems that accept qsub commands, but could be modified to suit your needs.  
 
 ### Example call: 
-    ./partfind_genetrees_local.sh [./path/to/PartitionFinder.py] [./path/to/pf_jobgen_output] [./path/to/SWSCEN.py] [#threads to use]
+    ./partfind_genetrees_local.sh [./path/to/PartitionFinder.py] [./path/to/pf_jobgen_output] [#threads to use]
     
 The path to the PartitionFinder script need not be an absolute path. If you have multiple cores (most do these days) include the number you want to dedicate to the analysis. You must specify a number...even if that number is 1. 
 
-## 3. best\_scheme\_finder.pl
+## 4. best\_scheme\_finder.pl
 
 This script takes the resulting output from PartitionFinder for each locus, and generates the partition (.aln) file for use in RAxML. The file is placed in the directory with the alignment file.  
    
 ### Example call: 
     perl best_scheme_finder.pl [./path/to/pf_jobgen_output]
     
-## 4a. raxml\_genetrees\_part\_local.sh
+## 5a. raxml\_genetrees\_part\_local.sh
 
 Assumes you have run steps 3 and 4. This script sequentially runs partitioned RAxML on each locus. This assume the use of raxmlHPC installed someplace where your path statement can find it (e.g., /usr/local/bin/).  
 If a different version of raxml is required, modify the script to point at the version you require. You could also modify this to include multi-threaded version...
@@ -54,7 +60,7 @@ Again, I have included version for cluster or grid computing systems (raxml\_gen
 ### Example call: 
     ./raxml_genetrees_part_local.sh [./path/to/pf_jobgen_output]
 
-## 4b. raxml\_genetrees\_nopart\local.sh
+## 5b. raxml\_genetrees\_nopart\local.sh
 
 Assumes you have proceeded here from step 2. This script sequentially runs RAxML on each locus. This assume the use of raxmlHPC installed someplace where your path statement can find it (e.g., /usr/local/bin/).  
 If a different version of raxml is required, modify the script to point at the version you require. You could also modify this to include multi-threaded version...
@@ -65,7 +71,7 @@ Again, I have included version for cluster or grid computing systems (raxml\_gen
     ./raxml_genetrees_nopart_local.sh [./path/to/pf_jobgen_output]
 
     
-## 5. best\_tree\_concat.pl
+## 6. best\_tree\_concat.pl
 
 This script takes files resulting from a gene tree or individual locus RAxML analysis, and concatenates the best trees, and reorganize the bootstraps for analysis with Astral or other software (also into a structure that is easier to look at).  
 
@@ -87,7 +93,7 @@ The directory structure results from running the preceding script steps, but can
 * ./boots - directory of individual bootstrap trees.  
 * ./best - directory of individual best trees.
 
-## 6. ASTRAL
+## 7. ASTRAL
 
 Run ASTRAL per the manual (should you wish to). e.g.,:  
 

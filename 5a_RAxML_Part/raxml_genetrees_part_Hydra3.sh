@@ -15,24 +15,22 @@ function myreadlink() {
   )
 }
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
     echo Script needs directory input.
-    echo Script usage: $me [./path/to/pf_jobgen_output] [./path/to/job_file]
+    echo Script usage: $me [./path/to/pf_jobgen_output]
     exit 1
 fi
 
 workdir=$(myreadlink $1)
-jobfile=$(myreadlink $2)
 
 mkdir -p ./logs
 
-for ARQ in $workdir/*_OUT/*.phy
+for ARQ in $workdir/*_OUT/*.phylip-relaxed
 
 	do
-	hold_locus=`basename "$ARQ"`;
-  locus=$(echo $hold_locus| cut -d'.' -f 1)
+	locus=`basename "$ARQ"`;
 	dir=`dirname "$ARQ"`;
 
-	qsub -pe orte 8 -q sThC.q -l mres=1.7G,h_data=1.7G,h_vmem=1.7G -N gtree_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd $jobfile $ARQ $dir $locus
+	qsub -pe orte 8 -q sThC.q -l mres=1.7G,h_data=1.7G,h_vmem=1.7G -N gtree_$locus -S /bin/sh -e ./logs/$locus.job.err -o ./logs/$locus.job.out -cwd -m aes raxml_job_part_Hydra3.job $ARQ $dir
 
 done
