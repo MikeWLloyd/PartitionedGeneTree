@@ -34,9 +34,9 @@ print "Working in $dir\n";
 
 $outdir = abs_path( $ARGV[1] );
 
-open (PRINTOUT, ">$outdir\/$ARGV[1]\_treeconcat.tre") || die "cannot open $file: $!"; # opens the file
-open (PRINTOUT_2, ">$outdir\/$ARGV[1]\_bootlocation.txt") || die "cannot open $file: $!"; # opens the file   
-open (PRINTOUT_3, ">$outdir\/$ARGV[1]\_parsed_locus_list.txt") || die "cannot open $file: $!"; # opens the file  
+open (PRINTOUT, ">$outdir\/Astral_Infiles_treeconcat.tre") || die "cannot open treeconcat: $!"; # opens the file
+open (PRINTOUT_2, ">$outdir\/Astral_Infiles_bootlocation.txt") || die "cannot open bootlocation: $!"; # opens the file   
+open (PRINTOUT_3, ">$outdir\/Astral_Infiles_parsed_locus_list.txt") || die "cannot open locus_list: $!"; # opens the file  
 
 $best_tree_count = 0;
 $locus_count = 0; 

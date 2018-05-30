@@ -1,0 +1,3 @@
+/pool/genomics/lloydm/PartitionedGeneTree/Example_Files/Astral_Input/boots/uce-1683_MS/RAxML_bootstrap.TestingNew
+/pool/genomics/lloydm/PartitionedGeneTree/Example_Files/Astral_Input/boots/uce-2501_MS/RAxML_bootstrap.TestingNew
+/pool/genomics/lloydm/PartitionedGeneTree/Example_Files/Astral_Input/boots/uce-1547_MS/RAxML_bootstrap.TestingNew

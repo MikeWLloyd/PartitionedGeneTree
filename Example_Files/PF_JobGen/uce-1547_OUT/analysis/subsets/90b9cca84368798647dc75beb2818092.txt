@@ -1,0 +1,8 @@
+Model selection results for subset: 90b9cca84368798647dc75beb2818092
+Subset alignment stored here: ./analysis/phylofiles/90b9cca84368798647dc75beb2818092.phy
+This subset contains the following data_blocks: uce-1547_right
+Number of columns in subset: 87
+Models are organised according to their AICc scores
+
+Model           | Parameters      | lnL             | AICc             | AIC             | BIC            
+GTR+G           | 9               | -268.527        | 557.393          | 555.055         | 577.248        

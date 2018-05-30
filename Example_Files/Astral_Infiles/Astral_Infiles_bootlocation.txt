@@ -1,3 +1,0 @@
-/Users/mlloyd/genetree_scripts/6_Best_Tree_Concat/Astral_Infiles/boots/locus1/RAxML_bootstrap.Multiplestarts
-/Users/mlloyd/genetree_scripts/6_Best_Tree_Concat/Astral_Infiles/boots/locus2/RAxML_bootstrap.Multiplestarts
-/Users/mlloyd/genetree_scripts/6_Best_Tree_Concat/Astral_Infiles/boots/locus3/RAxML_bootstrap.Multiplestarts

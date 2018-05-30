@@ -1,9 +1,0 @@
-Model selection results for subset: e9e322c4ffbdc85390ae58a7cb1a6e9f
-Subset alignment stored here: ./analysis/phylofiles/e9e322c4ffbdc85390ae58a7cb1a6e9f.phy
-Number of columns in subset: 200
-Models are organised according to their AICc scores
-
-Model           | Parameters      | lnL             | AICc             | AIC             | BIC            
-GTR             | 8               | -610.962        | 1238.68          | 1237.92         | 1264.31        
-GTR+G           | 9               | -611.013        | 1240.97          | 1240.03         | 1269.71        
-GTR+I+G         | 10              | -610.899        | 1242.96          | 1241.8          | 1274.78        

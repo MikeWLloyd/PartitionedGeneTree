@@ -98,11 +98,9 @@ Run ASTRAL per the manual (should you wish to). e.g.,:
 
 I have provided files from start to finish to provide examples of how the output looks if everything works properly. 
 
-* ./interleaved\_phylip\_files  
-	This contains example interleaved_phylip_files and is the starting point for all subsequent script steps. 
-* ./sequential\_phylip\_files  
-	Resulting files from the inter_to_sequential step
+* ./nexus  
+	This contains example nexus files and is the starting point for all subsequent steps. 
 * ./PF\_RAxML\_Files  
-	This is the workhorse directory that is intially generated in the pf_jobgen step and is used repeatedly for the rest of the script steps. This directory contains all the files for the remaining steps.
+	This is the workhorse directory that is initially generated in the pf_jobgen step and is used repeatedly for the rest of the script steps. This directory contains all the files for the remaining steps, and is complete to show what files are generated during the entire process.
 * ./Astral_Infiles  
 	This is the final directory output by best_tree_concat containing the files for use in ASTRAL, or other programs. 
