@@ -31,7 +31,7 @@ if [ $# -ne 4 ]; then
 fi
 
 re='^[0-9]+$'
-if ! [[ $3 =~ $re ]] ; then
+if ! [[ $4 =~ $re ]] ; then
    echo "error: you provided something other than a number for threads" >&2; exit 1
 fi
 
@@ -48,9 +48,10 @@ for ARQ in $workdir/*_OUT/
 
   eval python $swscen $ARQ.nexus
 
-  rename $ARQ/$locus.nexus_entropy_partition_finder.cfg, $ARQ/partition_finder.cfg;
-
-	eval python $partfind $ARQ --raxml --cmdline-extras -T $4
+  #rename $ARQ/$locus.nexus_entropy_partition_finder.cfg, $ARQ/partition_finder.cfg;
+	mv $ARQ/$locus.nexus_entropy_partition_finder.cfg $ARQ/partition_finder.cfg
+	
+	eval python $partfind $ARQ$locus.nexus --raxml --cmdline-extras -T $4
 	# This will run on a local machine. 
 
 done
